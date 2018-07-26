@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "5abd6f26-accc-4be5-b75a-301988ccc648",
+		"name": "Postcode",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Valid Postcode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b6c4a4c-97dc-4186-b07a-9e2a827f1807",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Expect 12 results for ML4 2UP\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.maxResults).to.eql(12);",
+							"});",
+							"",
+							"pm.test(\"Response is not undefined\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    jsonData.item !== undefined;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://sepa-sewage-discharge-api-test.azurewebsites.net/api/postcodeSearch?postcode=ML4 2DH",
+					"protocol": "https",
+					"host": [
+						"sepa-sewage-discharge-api-test",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"postcodeSearch"
+					],
+					"query": [
+						{
+							"key": "postcode",
+							"value": "ML4 2DH"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Partial Postcode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9af8458a-f026-4252-aae4-1b5dea624e60",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body contains string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"totalResults\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Response is not undefined\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    jsonData.item !== undefined;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://sepa-sewage-discharge-api-test.azurewebsites.net/api/postcodeSearch?postcode=ML4 2DH",
+					"protocol": "https",
+					"host": [
+						"sepa-sewage-discharge-api-test",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"postcodeSearch"
+					],
+					"query": [
+						{
+							"key": "postcode",
+							"value": "ML4 2DH"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Malformed Postcode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "391fb780-8745-4fb3-9f1c-1724d36eb1c0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body contains string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"totalResults\");",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Response is not undefined\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    jsonData.item !== undefined;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://sepa-sewage-discharge-api-test.azurewebsites.net/api/postcodeSearch?postcode=4ML 2DH",
+					"protocol": "https",
+					"host": [
+						"sepa-sewage-discharge-api-test",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"postcodeSearch"
+					],
+					"query": [
+						{
+							"key": "postcode",
+							"value": "4ML 2DH"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
